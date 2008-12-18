@@ -560,7 +560,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return int|float
      */
-    public private function _applyDiscountValue($value)
+    protected function _applyDiscountValue($value)
     {
         if ($this->discountValue > $value) {
             throw new Payment_PagamentoCerto_InvalidParameterException(
@@ -578,7 +578,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return int|float
      */
-    public private function _applyDiscountPercentage($value)
+    protected function _applyDiscountPercentage($value)
     {
         $multiplier = $this->discountValue / 100;
         $percentage = $value * $multiplier;
