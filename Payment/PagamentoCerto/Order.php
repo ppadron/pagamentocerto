@@ -63,49 +63,49 @@ class Payment_PagamentoCerto_Order
      *
      * @property int
      */
-    private $_buyerType;
+    protected $_buyerType;
 
     /**
      * Shipping value for the order
      *
      * @property float
      */
-    private $_shippingValue;
+    protected $_shippingValue;
 
     /**
      * Selected payment method
      *
      * @property int
      */
-    private $_paymentMethod;
+    protected $_paymentMethod;
 
     /**
      * Array contaning all the products of the order
      *
      * @property array
      */
-    private $_products = array();
+    protected $_products = array();
 
     /**
      * Array containing the buyer's personal info
      *
      * @property array
      */
-    private $_buyerInfo = array();
+    protected $_buyerInfo = array();
 
     /**
      * Array containing shipping ingo
      *
      * @property array
     */
-    private $_shippingAddress = array();
+    protected $_shippingAddress = array();
 
     /**
      * Array describing current payment methods
      *
      * @property array
      */
-    private $_supportedPaymentMethods = array(
+    protected $_supportedPaymentMethods = array(
         self::PAYMENT_METHOD_INVOICE,
         self::PAYMENT_METHOD_CC_VISA
     );
@@ -115,14 +115,14 @@ class Payment_PagamentoCerto_Order
      *
      * @property float
      */
-    private $_otherCharges;
+    protected $_otherCharges;
 
     /**
      * The order ID
      *
      * @property int
      */
-    private $_orderId;
+    protected $_orderId;
 
     /**
      * Class constructor
