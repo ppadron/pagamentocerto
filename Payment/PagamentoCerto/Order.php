@@ -168,7 +168,10 @@ class Payment_PagamentoCerto_Order
      *
      * @return void
      */
-    public function setBuyerInfo(array $buyerInfo, $buyerType = self::BUYER_TYPE_PERSON)
+    public function setBuyerInfo(
+        array $buyerInfo,
+        $buyerType = self::BUYER_TYPE_PERSON
+    )
     {
         $required = array('name', 'email', 'cpf');
 
@@ -219,14 +222,14 @@ class Payment_PagamentoCerto_Order
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (in_array($paymentMethod, $this->supportedPaymentMethods)) {
-            $this->paymentMethod = $paymentMethod;
-        } else {
+        if (!in_array($paymentMethod, $this->supportedPaymentMethods)) {
             throw new Payment_PagamentoCerto_InvalidPaymentMethodException(
                 'specified payment method is invalid'
             );
         }
-
+        
+        $this->paymentMethod = $paymentMethod;
+        
     }
 
     /**
