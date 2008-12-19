@@ -40,7 +40,7 @@ class Payment_PagamentoCerto_XmlBuilder
      *
      * @return string
      */
-    function getXml()
+    public function getXml()
     {
         $xml = '';
 
@@ -53,11 +53,11 @@ class Payment_PagamentoCerto_XmlBuilder
 
         // all values must be converted to cents
         $orderValues = array(
-            'subTotal'      => $this->_order->getOrderSubTotal()      * 100,
-            'shippingValue' => $this->_order->getShippingValue()      * 100,
-            'otherCharges'  => $this->_order->getOtherCharges()       * 100,
-            'discount'      => $this->_order->getCalculatedDiscount() * 100,
-            'totalAmount'   => $this->_order->getTotalAmount()        * 100
+            'subTotal'      => $this->_valueToCents($this->_order->getOrderSubTotal()),
+            'shippingValue' => $this->_valueToCents($this->_order->getShippingValue()),
+            'otherCharges'  => $this->_valueToCents($this->_order->getOtherCharges()),
+            'discount'      => $this->_valueToCents($this->_order->getCalculatedDiscount()),
+            'totalAmount'   => $this->_valueToCents($this->_order->getTotalAmount())
         );
 
         $xml .= $this->_getOrderInfoXml(
@@ -71,6 +71,16 @@ class Payment_PagamentoCerto_XmlBuilder
         $xml .= $this->_getFooterXml();
 
         return $xml;
+    }
+    
+    /**
+     * Converts a value to cents (multiplies by 100)
+     *
+     * @param int|float $value
+     * @return int|float
+     */
+    private function _valueToCents($value) {
+    	return $value * 100;
     }
 
     /**
