@@ -212,6 +212,17 @@ class Payment_PagamentoCerto
     }
 
     /**
+     * Sets a user-defined SOAP client
+     *
+     * @param mixed $soapClient User-defined SOAP client
+     * 
+     * @return void
+     */
+    public function setSoapClient($soapClient) {
+        $this->soapClient = $soapClient;
+    }
+    
+    /**
      * Returns an instance of a SoapClient
      *
      * @param string $url Webservice URL (WSDL mode)
@@ -220,6 +231,11 @@ class Payment_PagamentoCerto
      */
     protected function getSoapClient($url)
     {
+        // if we already have a Soap Client, return it
+        if (isset($this->soapClient)) {
+            return $this->soapClient;
+        }
+        
         $soapOptions = array(
             'trace' => true,
             'exceptions' => true,
@@ -227,7 +243,7 @@ class Payment_PagamentoCerto
             'connection_timeout' => 1000
         );
 
-        // WSDL mode
+        // SoapClient is on WSDL mode
         $soapClient = new SoapClient($url, $soapOptions);
 
         return $soapClient;
