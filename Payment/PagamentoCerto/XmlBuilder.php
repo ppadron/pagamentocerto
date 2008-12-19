@@ -30,7 +30,7 @@ class Payment_PagamentoCerto_XmlBuilder
      *
      * @param Payment_PagamentoCerto_Order $order Object containing the order data
      */
-    function __construct(Payment_PagamentoCerto_Order $order)
+    public function __construct(Payment_PagamentoCerto_Order $order)
     {
         $this->_order = $order;
     }
