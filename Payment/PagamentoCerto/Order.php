@@ -63,49 +63,49 @@ class Payment_PagamentoCerto_Order
      *
      * @property int
      */
-    protected $_buyerType;
+    protected $buyerType;
 
     /**
      * Shipping value for the order
      *
      * @property float
      */
-    protected $_shippingValue;
+    protected $shippingValue;
 
     /**
      * Selected payment method
      *
      * @property int
      */
-    protected $_paymentMethod;
+    protected $paymentMethod;
 
     /**
      * Array contaning all the products of the order
      *
      * @property array
      */
-    protected $_products = array();
+    protected $products = array();
 
     /**
      * Array containing the buyer's personal info
      *
      * @property array
      */
-    protected $_buyerInfo = array();
+    protected $buyerInfo = array();
 
     /**
      * Array containing shipping ingo
      *
      * @property array
     */
-    protected $_shippingAddress = array();
+    protected $shippingAddress = array();
 
     /**
      * Array describing current payment methods
      *
      * @property array
      */
-    protected $_supportedPaymentMethods = array(
+    protected $supportedPaymentMethods = array(
         self::PAYMENT_METHOD_INVOICE,
         self::PAYMENT_METHOD_CC_VISA
     );
@@ -115,14 +115,14 @@ class Payment_PagamentoCerto_Order
      *
      * @property float
      */
-    protected $_otherCharges;
+    protected $otherCharges;
 
     /**
      * The order ID
      *
      * @property int
      */
-    protected $_orderId;
+    protected $orderId;
 
     /**
      * Class constructor
@@ -147,7 +147,7 @@ class Payment_PagamentoCerto_Order
                 'order id must be an integer or floating point number'
             );
         }
-        $this->_orderId = $id;
+        $this->orderId = $id;
     }
 
     /**
@@ -157,7 +157,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getOrderId()
     {
-        return $this->_orderId;
+        return $this->orderId;
     }
 
     /**
@@ -172,9 +172,9 @@ class Payment_PagamentoCerto_Order
     {
         $required = array('name', 'email', 'cpf');
 
-        $this->_buyerType = $buyerType;
+        $this->buyerType = $buyerType;
 
-        if ($this->_buyerType === self::BUYER_TYPE_COMPANY) {
+        if ($this->buyerType === self::BUYER_TYPE_COMPANY) {
             $required[] = 'cnpj';
             $required[] = 'companyName';
         }
@@ -187,7 +187,7 @@ class Payment_PagamentoCerto_Order
             }
         }
 
-        $this->_buyerInfo = $buyerInfo;
+        $this->buyerInfo = $buyerInfo;
     }
 
     /**
@@ -197,7 +197,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getBuyerInfo()
     {
-        return $this->_buyerInfo;
+        return $this->buyerInfo;
     }
 
     /**
@@ -207,7 +207,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getBuyerType()
     {
-        return $this->_buyerType;
+        return $this->buyerType;
     }
 
     /**
@@ -219,8 +219,8 @@ class Payment_PagamentoCerto_Order
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (in_array($paymentMethod, $this->_supportedPaymentMethods)) {
-            $this->_paymentMethod = $paymentMethod;
+        if (in_array($paymentMethod, $this->supportedPaymentMethods)) {
+            $this->paymentMethod = $paymentMethod;
         } else {
             throw new Payment_PagamentoCerto_InvalidPaymentMethodException(
                 'specified payment method is invalid'
@@ -280,20 +280,20 @@ class Payment_PagamentoCerto_Order
         $totalAmount = round($quantity * $value, 2);
 
 
-        if (isset($this->_products[$id])) {
-            if ($this->_products[$id]['value'] !== $value) {
+        if (isset($this->products[$id])) {
+            if ($this->products[$id]['value'] !== $value) {
                 throw new Payment_PagamentoCerto_ProductValueMismatchException(
                     'the product with id ' . $id .
-                    ' has value ' . $this->_products[$id]['value']
+                    ' has value ' . $this->products[$id]['value']
                 );
             }
-            $this->_products[$id]['quantity']    += $quantity;
-            $this->_products[$id]['totalAmount'] += $totalAmount;
+            $this->products[$id]['quantity']    += $quantity;
+            $this->products[$id]['totalAmount'] += $totalAmount;
         } else {
-            $this->_products[$id]['value']       = $value;
-            $this->_products[$id]['quantity']    = $quantity;
-            $this->_products[$id]['description'] = $description;
-            $this->_products[$id]['totalAmount'] = $totalAmount;
+            $this->products[$id]['value']       = $value;
+            $this->products[$id]['quantity']    = $quantity;
+            $this->products[$id]['description'] = $description;
+            $this->products[$id]['totalAmount'] = $totalAmount;
         }
 
     }
@@ -305,7 +305,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getProducts()
     {
-        return $this->_products;
+        return $this->products;
     }
 
     /**
@@ -317,8 +317,8 @@ class Payment_PagamentoCerto_Order
      */
     public function getProductTotalAmount($id)
     {
-        if (isset($this->_products[$id]['totalAmount'])) {
-            return $this->_products[$id]['totalAmount'];
+        if (isset($this->products[$id]['totalAmount'])) {
+            return $this->products[$id]['totalAmount'];
         } else {
             return null;
         }
@@ -333,8 +333,8 @@ class Payment_PagamentoCerto_Order
      */
     public function getProductQuantity($id)
     {
-        if (isset($this->_products[$id]['quantity'])) {
-            return $this->_products[$id]['quantity'];
+        if (isset($this->products[$id]['quantity'])) {
+            return $this->products[$id]['quantity'];
         } else {
             return null;
         }
@@ -349,7 +349,7 @@ class Payment_PagamentoCerto_Order
      */
     public function setShippingAddress(array $shippingAddress = array())
     {
-        $this->_setAddress(
+        $this->setAddress(
             Payment_PagamentoCerto_Order::ADDRESS_TYPE_SHIPPING,
             $shippingAddress
         );
@@ -364,7 +364,7 @@ class Payment_PagamentoCerto_Order
      */
     public function setBillingAddress(array $billingAddress = array())
     {
-        $this->_setAddress(
+        $this->setAddress(
             Payment_PagamentoCerto_Order::ADDRESS_TYPE_BILLING,
             $billingAddress
         );
@@ -411,7 +411,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getPaymentMethod()
     {
-        return $this->_paymentMethod;
+        return $this->paymentMethod;
     }
 
     /**
@@ -421,7 +421,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getShippingAddress()
     {
-        return $this->_shippingAddress;
+        return $this->shippingAddress;
     }
 
     /**
@@ -431,7 +431,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getShippingValue()
     {
-        return $this->_shippingValue;
+        return $this->shippingValue;
     }
 
     /**
@@ -448,7 +448,7 @@ class Payment_PagamentoCerto_Order
                 'shipping value ' . $value . ' is not valid'
             );
         } else {
-            $this->_shippingValue = $value;
+            $this->shippingValue = $value;
         }
     }
 
@@ -466,7 +466,7 @@ class Payment_PagamentoCerto_Order
                 'other charges value ' . $value . ' is not valid'
             );
         } else {
-            $this->_otherCharges = $value;
+            $this->otherCharges = $value;
         }
     }
 
@@ -477,7 +477,7 @@ class Payment_PagamentoCerto_Order
      */
     public function getOtherCharges()
     {
-        return $this->_otherCharges;
+        return $this->otherCharges;
     }
 
     /**
@@ -489,7 +489,7 @@ class Payment_PagamentoCerto_Order
     {
         $subTotal = null;
 
-        foreach ($this->_products as $product) {
+        foreach ($this->products as $product) {
             $subTotal += $product['totalAmount'];
         }
 
@@ -536,11 +536,11 @@ class Payment_PagamentoCerto_Order
 
             switch ($this->discountType) {
             case self::DISCOUNT_TYPE_PERCENTAGE:
-                $result = $this->_applyDiscountPercentage($value);
+                $result = $this->applyDiscountPercentage($value);
                 break;
             case self::DISCOUNT_TYPE_VALUE:
             default:
-                $result = $this->_applyDiscountValue($value);
+                $result = $this->applyDiscountValue($value);
                 break;
             }
 
@@ -560,7 +560,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return int|float
      */
-    protected function _applyDiscountValue($value)
+    protected function applyDiscountValue($value)
     {
         if ($this->discountValue > $value) {
             throw new Payment_PagamentoCerto_InvalidParameterException(
@@ -578,7 +578,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return int|float
      */
-    protected function _applyDiscountPercentage($value)
+    protected function applyDiscountPercentage($value)
     {
         $multiplier = $this->discountValue / 100;
         $percentage = $value * $multiplier;
@@ -614,7 +614,7 @@ class Payment_PagamentoCerto_Order
         }
 
         // if we have no products, discount can't be set
-        if (count($this->_products) === 0) {
+        if (count($this->products) === 0) {
             throw new Payment_PagamentoCerto_NoProductsException(
                 'cannot set discount without products'
             );
@@ -722,7 +722,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return void
      */
-    private function _setAddress($addressType, $addressInfo = array())
+    protected function setAddress($addressType, $addressInfo = array())
     {
         // required fields
         $required = array(
@@ -753,7 +753,7 @@ class Payment_PagamentoCerto_Order
             $this->billingAddress = $addressInfo;
             break;
         case self::ADDRESS_TYPE_SHIPPING:
-            $this->_shippingAddress = $addressInfo;
+            $this->shippingAddress = $addressInfo;
             break;
         default:
             throw new Payment_PagamentoCerto_Exception(
