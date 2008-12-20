@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0"
+    xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+    <name>Payment_PagamentoCerto</name>
+    <channel>pear.php.net</channel>    
+    <summary>PHP client to Brazilian payment gateway PagamentoCerto</summary>
+    <description>
+        This package provides an interface to the Brazilian payment gateway PagamentoCerto. 
+    </description>
+    <lead>
+        <name>Pedro Padron</name>
+        <user>ppadron</user>
+        <email>ppadron@w3p.com.br</email>
+        <active>yes</active>
+    </lead>
+    <date>2008-11-16</date>
+    <time>23:20:30</time>
+    <version>
+        <release>0.2.0</release>
+        <api>0.2.0</api>
+    </version>
+    <stability>
+        <release>alpha</release>
+        <api>alpha</api>
+    </stability>
+    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+    <notes>
+        Second release based on PEAR-DEV comments
+    </notes>
+    <contents>
+        <dir name="/">
+            <dir name="Payment">
+                <dir name="PagamentoCerto">
+                    <dir name="examples">
+                        <file name="startTransaction.php" role="php" />
+                        <file name="getTransactionInfo.php" role="php" />
+                    </dir>
+                    <dir name="tests">
+                        <file name="OrderTest.php" role="test" />
+                    </dir>
+                    <file name="Exceptions.php" role="php" />
+                    <file name="Order.php" role="php" />
+                    <file name="PagamentoCerto.php" role="php" />
+                    <file name="Transaction.php" role="php" />
+                    <file name="XmlBuilder.php" role="php" />
+                </dir>
+            </dir>
+        </dir>
+    </contents>
+    <dependencies>
+        <required>
+            <php>
+                <min>5.2</min>
+            </php>
+            <pearinstaller>
+                <min>1.4.0</min>
+            </pearinstaller>
+            <extension>
+                <name>soap</name>
+            </extension>
+            <extension>
+                <name>simplexml</name>
+            </extension>
+        </required>
+    </dependencies>
+    <phprelease/>
+    <changelog>
+    	<release>
+    		<version>
+    			<release>0.2.0</release>
+    			<api>0.2.0</api>    		
+    		</version>
+    		<stability>
+    			<release>alpha</release>
+    			<api>alpha</api>
+    		</stability>
+    		<date>2008-12-19</date>
+    		<license>LGPL</license>
+    		<notes>
+New release based on comments provided in the proposal process.
+- minor coding standard fixes
+- "return early" apllied to all methods 
+- added Payment_PagamentoCerto_XmlBuild::_valueToCents()
+- added Payment_PagamentoCerto::setSoapClient()
+- public methods are now explicitly declared as public
+- private methods are now protected (except in XmlBuild)  		
+    		</notes>
+    	</release>
+    </changelog>
+</package>
