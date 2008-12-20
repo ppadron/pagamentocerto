@@ -11,8 +11,6 @@
  * @link     http://pear.php.net/packages/Payment/PagamentoCerto
  */
 
-set_include_path(get_include_path() . ':' . '/home/projects/pagamentocerto');
-
 require_once 'PHPUnit/Framework.php';
 require_once 'Payment/PagamentoCerto/PagamentoCerto.php';
 require_once 'Payment/PagamentoCerto/Order.php';
