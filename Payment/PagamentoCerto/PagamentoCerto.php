@@ -218,7 +218,8 @@ class Payment_PagamentoCerto
      * 
      * @return void
      */
-    public function setSoapClient($soapClient) {
+    public function setSoapClient($soapClient)
+    {
         $this->soapClient = $soapClient;
     }
     
