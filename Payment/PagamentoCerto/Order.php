@@ -625,11 +625,11 @@ class Payment_PagamentoCerto_Order
 
         switch ($discountType) {
         case self::DISCOUNT_TYPE_PERCENTAGE:
-            $this->setDiscountPercentage($discount);
+            $this->setDiscountAsPercentage($discount);
             break;
         case self::DISCOUNT_TYPE_VALUE:
         default:
-            $this->setDiscountValue($discount);
+            $this->setDiscountAsValue($discount);
             break;
         }
 
@@ -642,7 +642,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return void
      */
-    public function setDiscountValue($discount)
+    public function setDiscountAsValue($discount)
     {
         if (!is_int($discount) && !is_float($discount)) {
             throw new Payment_PagamentoCerto_InvalidParameterException(
@@ -677,7 +677,7 @@ class Payment_PagamentoCerto_Order
      *
      * @return void
      */
-    public function setDiscountPercentage($discount)
+    public function setDiscountAsPercentage($discount)
     {
         if (!is_int($discount) && !is_float($discount)) {
             throw new Payment_PagamentoCerto_InvalidParameterException(
