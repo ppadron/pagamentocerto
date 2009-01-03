@@ -79,7 +79,8 @@ class Payment_PagamentoCerto_XmlBuilder
      * @param int|float $value
      * @return int|float
      */
-    private function _valueToCents($value) {
+    private function _valueToCents($value)
+    {
     	return $value * 100;
     }
 

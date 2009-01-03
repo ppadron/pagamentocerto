@@ -450,9 +450,8 @@ class Payment_PagamentoCerto_Order
             throw new Payment_PagamentoCerto_InvalidParameterException(
                 'shipping value ' . $value . ' is not valid'
             );
-        } else {
-            $this->shippingValue = $value;
         }
+        $this->shippingValue = $value;
     }
 
     /**
@@ -468,9 +467,8 @@ class Payment_PagamentoCerto_Order
             throw new Payment_PagamentoCerto_InvalidParameterException(
                 'other charges value ' . $value . ' is not valid'
             );
-        } else {
-            $this->otherCharges = $value;
         }
+        $this->otherCharges = $value;
     }
 
     /**
@@ -657,17 +655,16 @@ class Payment_PagamentoCerto_Order
             if ($discount < $this->getOrderSubTotal()) {
                 $this->discountType  = self::DISCOUNT_TYPE_VALUE;
                 $this->discountValue = $discount;
-            } else {
-                throw new Payment_PagamentoCerto_InvalidParameterException(
-                    'discount cannot be greater than the subtotal'
-                );
+                return;
             }
-
-        } else {
             throw new Payment_PagamentoCerto_InvalidParameterException(
-                'discount must be a positive value'
+                'discount cannot be greater than the subtotal'
             );
+
         }
+        throw new Payment_PagamentoCerto_InvalidParameterException(
+            'discount must be a positive value'
+        );
     }
 
     /**
@@ -689,12 +686,11 @@ class Payment_PagamentoCerto_Order
         if (($discount >= 0) && ($discount <= 100)) {
             $this->discountType  = self::DISCOUNT_TYPE_PERCENTAGE;
             $this->discountValue = $discount;
-        } else {
-            throw new Payment_PagamentoCerto_InvalidParameterException(
-                'discount value ' . $discount . ' is not valid'
-            );
+            return;
         }
-
+        throw new Payment_PagamentoCerto_InvalidParameterException(
+            'discount value ' . $discount . ' is not valid'
+        );
     }
 
     /**
@@ -728,7 +724,7 @@ class Payment_PagamentoCerto_Order
     protected function setAddress($addressType, $addressInfo = array())
     {
         // required fields
-        $required = array(
+        static $required = array(
             'address',
             'addressNumber',
             'district',
@@ -767,5 +763,4 @@ class Payment_PagamentoCerto_Order
     }
 
 }
-
 ?>

@@ -140,11 +140,9 @@ class Payment_PagamentoCerto
                 $xmlResult->Transacao->MensagemRetorno,
                 intval($xmlResult->Transacao->CodRetorno)
             );
-        } else {
-            $this->transactionId = $xmlResult->Transacao->IdTransacao;
-            return $this->transactionId;
         }
-
+        $this->transactionId = $xmlResult->Transacao->IdTransacao;
+        return $this->transactionId;
     }
 
     /**
@@ -161,10 +159,8 @@ class Payment_PagamentoCerto
                 throw new Payment_PagamentoCerto_NoTransactionId(
                     'transaction id not specified'
                 );
-            } else {
-                $transactionId = $this->transactionId;
             }
-
+            $transactionId = $this->transactionId;
         }
 
         $soapClient = $this->getSoapClient($this->sellerWebserviceUrl);
@@ -218,7 +214,7 @@ class Payment_PagamentoCerto
      * 
      * @return void
      */
-    public function setSoapClient($soapClient)
+    public function setSoapClient(SoapClient $soapClient)
     {
         $this->soapClient = $soapClient;
     }
@@ -248,9 +244,5 @@ class Payment_PagamentoCerto
         $soapClient = new SoapClient($url, $soapOptions);
 
         return $soapClient;
-
     }
-
 }
-
-?>
