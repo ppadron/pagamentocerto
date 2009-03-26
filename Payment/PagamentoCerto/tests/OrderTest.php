@@ -12,7 +12,7 @@
  */
 
 require_once 'PHPUnit/Framework.php';
-require_once 'Payment/PagamentoCerto/PagamentoCerto.php';
+require_once 'Payment/PagamentoCerto.php';
 require_once 'Payment/PagamentoCerto/Order.php';
 
 

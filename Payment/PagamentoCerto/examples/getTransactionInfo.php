@@ -15,16 +15,20 @@
  * @link     http://pear.php.net/packages/Payment/PagamentoCerto
  */
 
-require_once 'Payment/PagamentoCerto/PagamentoCerto.php';
+require_once 'Payment/PagamentoCerto.php';
 
-$sellerApiKey = '3821023c-1602-499b-a220-80e4eb83c13b';
+$sellerApiKey = '3821023c-1602-499b-a220-258aeb83c13b';
 
 $obj = new Payment_PagamentoCerto($sellerApiKey);
 
+if (!isset($_GET["tid"])) {
+    // if the transaction id wasn't specified, you should do something more
+    // user-friendly than throwing an exception
+    throw new Payment_PagamentoCerto_Exception('Transaction ID was not specified');
+}
+
 // The payment gateway must send the transaction ID via GET
-$transactionId = isset($_GET["tid"])
-    ? $_GET["tid"]
-    : 'c22f95f5-6d2e-4e0f-bc93-5678b116bbbd';
+$transactionId = $_GET["tid"];
 
 try {
     // Fetching the transaction information
@@ -37,9 +41,5 @@ try {
 } catch (Payment_PagamentoCerto_Exception $e) {
     echo $e->getMessage();
 }
-
-
-
-
 
 ?>

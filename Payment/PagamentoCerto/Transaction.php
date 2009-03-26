@@ -22,7 +22,7 @@
  */
 class Payment_PagamentoCerto_Transaction
 {
-    /**
+    /**#@+
      * Values that represent the API's return codes
      */
     const NOT_FOUND            = 11;
@@ -35,6 +35,7 @@ class Payment_PagamentoCerto_Transaction
     const USER_EXIT            = 18;
     const USER_CANCELLED       = 19;
     const RETRY_LIMIT_EXCEEDED = 20;
+    /**#@-*/
 
     /**
      * Transaction ID

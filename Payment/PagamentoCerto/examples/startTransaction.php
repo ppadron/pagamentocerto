@@ -15,7 +15,7 @@
  * @link     http://pear.php.net/packages/Payment/PagamentoCerto
  */
 
-require_once 'Payment/PagamentoCerto/PagamentoCerto.php';
+require_once 'Payment/PagamentoCerto.php';
 require_once 'Payment/PagamentoCerto/Order.php';
 
 $order = new Payment_PagamentoCerto_Order();
@@ -44,7 +44,7 @@ $shippingAddress['district']          = 'Meu Bairro';
 $shippingAddress['city']              = 'Sao Paulo';
 $shippingAddress['zipCode']           = '02462081';
 $shippingAddress['state']             = 'SP';
-$order->setShippingAddress($billingAddress);
+$order->setShippingAddress($shippingAddress);
 
 /**
  * In this case, billing address is the same as the shipping address
@@ -119,6 +119,8 @@ $order->setPaymentMethodAsInvoice();
  * examples/getTransactionInfo.php
  */
 $postbackUrl = 'http://www.example.com/transactionResult.php';
+
+$sellerApiKey = '3821023c-1602-499b-a220-258aeb83c13b';
 
 $process = new Payment_PagamentoCerto($sellerApiKey, $postbackUrl);
 
