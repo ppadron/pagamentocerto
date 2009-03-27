@@ -18,11 +18,11 @@ http://pear.php.net/dtd/package-2.0.xsd">
         <email>ppadron@w3p.com.br</email>
         <active>yes</active>
     </lead>
-    <date>2008-11-16</date>
+    <date>2009-03-27</date>
     <time>23:20:30</time>
     <version>
-        <release>0.2.0</release>
-        <api>0.2.0</api>
+        <release>0.2.2</release>
+        <api>0.2.2</api>
     </version>
     <stability>
         <release>alpha</release>
@@ -35,6 +35,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
     <contents>
         <dir name="/">
             <dir name="Payment">
+                <file name="PagamentoCerto.php" role="php" />
                 <dir name="PagamentoCerto">
                     <dir name="examples">
                         <file name="startTransaction.php" role="php" />
@@ -45,7 +46,6 @@ http://pear.php.net/dtd/package-2.0.xsd">
                     </dir>
                     <file name="Exceptions.php" role="php" />
                     <file name="Order.php" role="php" />
-                    <file name="PagamentoCerto.php" role="php" />
                     <file name="Transaction.php" role="php" />
                     <file name="XmlBuilder.php" role="php" />
                 </dir>
@@ -72,23 +72,19 @@ http://pear.php.net/dtd/package-2.0.xsd">
     <changelog>
     	<release>
     		<version>
-    			<release>0.2.0</release>
+    			<release>0.2.2</release>
     			<api>0.2.0</api>    		
     		</version>
     		<stability>
     			<release>alpha</release>
     			<api>alpha</api>
     		</stability>
-    		<date>2008-12-19</date>
+    		<date>2009-03-27</date>
     		<license>LGPL</license>
     		<notes>
-New release based on comments provided in the proposal process.
-- minor coding standard fixes
-- "return early" apllied to all methods 
-- added Payment_PagamentoCerto_XmlBuild::_valueToCents()
-- added Payment_PagamentoCerto::setSoapClient()
-- public methods are now explicitly declared as public
-- private methods are now protected (except in XmlBuild)  		
+Bugfix release:
+- directory structure (PagamentoCerto.php is now in the correct dir)
+- package.xml fix
     		</notes>
     	</release>
     </changelog>
