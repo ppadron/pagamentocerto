@@ -18,10 +18,9 @@ http://pear.php.net/dtd/package-2.0.xsd">
         <email>ppadron@w3p.com.br</email>
         <active>yes</active>
     </lead>
-    <date>2008-11-16</date>
-    <time>23:20:30</time>
+    <date>2010-03-04</date>
     <version>
-        <release>0.2.2</release>
+        <release>0.2.3</release>
         <api>0.2.0</api>
     </version>
     <stability>
@@ -30,11 +29,13 @@ http://pear.php.net/dtd/package-2.0.xsd">
     </stability>
     <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
     <notes>
-        Second release based on PEAR-DEV comments
+        - fixed bizarre syntax error in PagamentoCerto.php
+        - fixed bug where setPaymentMethod() had no effect at all
     </notes>
     <contents>
         <dir name="/">
             <dir name="Payment">
+                <file name="PagamentoCerto.php" role="php" />
                 <dir name="PagamentoCerto">
                     <dir name="examples">
                         <file name="startTransaction.php" role="php" />
@@ -45,7 +46,6 @@ http://pear.php.net/dtd/package-2.0.xsd">
                     </dir>
                     <file name="Exceptions.php" role="php" />
                     <file name="Order.php" role="php" />
-                    <file name="PagamentoCerto.php" role="php" />
                     <file name="Transaction.php" role="php" />
                     <file name="XmlBuilder.php" role="php" />
                 </dir>
@@ -70,6 +70,18 @@ http://pear.php.net/dtd/package-2.0.xsd">
     </dependencies>
     <phprelease/>
     <changelog>
+        <release>
+            <version>
+                <release>0.2.2</release>
+                <api>0.2.0</api>
+            </version>
+            <stability>
+                <release>alpha</release>
+                <api>alpha</api>
+            </stability>
+            <date>2008-11-16</date>
+            <notes>Second release based on PEAR-DEV comments</notes>
+        </release>
     	<release>
     		<version>
     			<release>0.2.0</release>
