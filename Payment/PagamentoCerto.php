@@ -75,8 +75,8 @@ class Payment_PagamentoCerto
      *
      * @property string
      */
-    protected $sellerWebserviceUrl = 'https://www.pagamentocerto.com.br/' .
-        'vendedor/vendedor.asmx?WSDL';
+    protected $sellerWebserviceUrl
+         = 'https://www.pagamentocerto.com.br/vendedor/vendedor.asmx?WSDL';
 
     /**
      * Payment gateway webservice URL
