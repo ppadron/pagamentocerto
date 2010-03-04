@@ -51,6 +51,8 @@ class Payment_PagamentoCerto_XmlBuilder
             $this->_order->getBuyerType()
         );
 
+        $xml .= $this->_getPaymentInfoXml($this->_order->getPaymentMethod());
+
         // all values must be converted to cents
         $orderValues = array(
             'subTotal'      => $this->_valueToCents($this->_order->getOrderSubTotal()),
